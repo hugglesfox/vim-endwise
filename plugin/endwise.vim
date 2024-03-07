@@ -88,6 +88,11 @@ augroup endwise " {{{1
         \ let b:endwise_words = 'struct,sig,begin,object,do,match,try' |
         \ let b:endwise_pattern = '\zs\<&\>\ze\%(.*\%(end\|done\|with\)\)\@!.*$' |
         \ let b:endwise_syngroups = 'ocamlStruct,ocamlStructEncl,ocamlSig,ocamlSigEncl,ocamlObject,ocamlLCIdentifier,ocamlKeyword,ocamlDo,ocamlEnd,'
+  autocmd FileType tex
+        \ let b:endwise_addition = '\="\\end" . matchstr(submatch(0), "{.\\{-}}")' |
+        \ let b:endwise_words = 'begin' |
+        \ let b:endwise_pattern = '\\begin{.\{-}}' |
+        \ let b:endwise_syngroups = 'texSection,texBeginEnd,texBeginEndName,texStatement'
   autocmd FileType * call s:abbrev()
   autocmd CmdwinEnter * call s:NeutralizeMap()
   autocmd VimEnter * call s:DefineMap()
